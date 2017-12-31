@@ -1,0 +1,7 @@
+name: MineturAPI
+author: MC_Malte
+version: 1.0
+main: de.mcmalte.mineturapi.Main
+commands:
+  sudo:
+  heal:
