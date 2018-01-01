@@ -4,8 +4,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import de.mcmalte.mineturapi.api.MineturPlayer;
-import de.mcmalte.mineturapi.api.MineturServer;
+import de.minetur.mineturapi.api.MineturPlayer;
+import de.minetur.mineturapi.api.MineturServer;
 
 public class InfoCommand implements CommandExecutor{
 

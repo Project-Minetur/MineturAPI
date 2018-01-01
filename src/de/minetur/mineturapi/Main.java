@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import de.minetur.mineturapi.api.MineturGameServer;
 import de.minetur.mineturapi.api.MineturServer;
+import de.minetur.mineturapi.commands.GameStateCommand;
 import de.minetur.mineturapi.commands.HealCommand;
 import de.minetur.mineturapi.commands.SudoCommand;
 import de.minetur.mineturapi.enums.GameState;
@@ -46,6 +47,7 @@ public class Main extends JavaPlugin {
 	private void registerCommands() {
 		getCommand("sudo").setExecutor(new SudoCommand());
 		getCommand("heal").setExecutor(new HealCommand());
+		getCommand("gamestate").setExecutor(new GameStateCommand());
 
 	}
 

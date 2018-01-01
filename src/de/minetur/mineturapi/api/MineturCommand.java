@@ -3,26 +3,27 @@ package de.minetur.mineturapi.api;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import de.minetur.mineturapi.Data;
-
 public class MineturCommand {
 
-	public static void playerCheck(CommandSender sender) {
+	public static boolean isConsole(CommandSender sender) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage(Data.mustBePlayer);
+			return true;
 		}
+		return false;
 	}
 
-	public static void checkPerm(Player p, String perm) {
-		if (!p.hasPermission(perm)) {
-			p.sendMessage(Data.noPerm);
+	public static boolean hasPerm(MineturPlayer mp, String perm) {
+		if (!mp.hasPermission(perm)) {
+			return true;
 		}
+		return false;
 	}
 	
-	public static void checkPerm(Player p, String perm, String perm2) {
+	public static boolean hasPerm(Player p, String perm, String perm2) {
 		if (!p.hasPermission(perm) || (!p.hasPermission(perm2))) {
-			p.sendMessage(Data.noPerm);
+			return true;
 		}
+		return false;
 	}
 
 }

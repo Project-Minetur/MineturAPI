@@ -10,18 +10,21 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.libs.jline.internal.Log;
 import org.bukkit.entity.Player;
 
-import de.mcmalte.mineturapi.Data;
-import de.mcmalte.mineturapi.api.MineturCommand;
+import de.minetur.mineturapi.Data;
+import de.minetur.mineturapi.api.MineturCommand;
 
 public class SudoCommand implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("sudo")) {
-			MineturCommand.playerCheck(sender);
+			if(MineturCommand.isConsole(sender)){
+				sender.sendMessage(Data.mustBePlayer);
+				return true;
+			}
 			Player p = (Player) sender;
 			if (args.length >= 2) {
-				MineturCommand.checkPerm(p, "minetur.command.sudo");
+				if(p.hasPermission("minetur.command.sudo")) {
 				if (!(Bukkit.getPlayer(args[0]) == null)) {
 					String command = "";
 					for (int i = 1; i < args.length; i++) {
@@ -38,6 +41,9 @@ public class SudoCommand implements CommandExecutor {
 							+ p.getName() + " §7ausgeführt.");
 				} else {
 					p.sendMessage(Data.notOnline);
+				}
+				}else{
+					p.sendMessage(Data.noPerm);
 				}
 			} else {
 				p.sendMessage("§cSyntax: /sudo <Spieler> <Command>");

@@ -1,7 +1,8 @@
 name: MineturAPI
 author: MC_Malte
 version: 1.0
-main: de.mcmalte.mineturapi.Main
+main: de.minetur.mineturapi.Main
 commands:
   sudo:
   heal:
+  gamestate:

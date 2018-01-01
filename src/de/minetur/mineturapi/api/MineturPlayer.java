@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.permissions.Permission;
 
 import de.mcmalte.coinsystem.api.CoinsAPI;
-import de.mcmalte.coinsystem.profile.UUIDFetcher;
+import de.minetur.mineturapi.profile.UUIDFetcher;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
@@ -27,10 +27,10 @@ public class MineturPlayer extends CraftPlayer {
 
 	private Player PLAYER;
 
-	private MineturPlayer(Player player) {
-		super((CraftServer) player.getServer(), ((CraftPlayer) player).getHandle());
-		PLAYERS.put(player.getName().toLowerCase(), this);
-		PLAYER = player;
+	MineturPlayer(Player p) {
+		super((CraftServer) p.getServer(), ((CraftPlayer) p).getHandle());
+		PLAYERS.put(p.getName().toLowerCase(), this);
+		PLAYER = p;
 	}
 
 	@Override
@@ -55,6 +55,10 @@ public class MineturPlayer extends CraftPlayer {
 	/**
 	 * Use MineturServer.getPlayer() instead.
 	 */
+	
+	public Player toPlayer(){
+		return PLAYER;
+	}
 	public static MineturPlayer getPlayer(String name) {
 		if (PLAYERS.containsKey(name.toLowerCase())) {
 			return PLAYERS.get(name.toLowerCase());
@@ -65,7 +69,7 @@ public class MineturPlayer extends CraftPlayer {
 	}
 
 	public UUID getUUID() {
-		return UUIDFetcher.getUUID(PLAYER.getName());
+		return UUIDFetcher.getUUID(getName());
 	}
 	
 	/**
@@ -74,7 +78,6 @@ public class MineturPlayer extends CraftPlayer {
 	@Deprecated
 	public UUID getUniqueId(){
 		return getUUID();
-		
 	}
 
 	public Long getCoins() {
