@@ -94,4 +94,8 @@ public class MineturServer {
 		return PermissionsEx.getPermissionManager().getGroup(group);
 	}
 
+	public static void showExcpetion(String pluginname, String message){
+		getConsole().sendMessage("[" + pluginname + "] Excpetion: " + message);
+	}
+
 }
